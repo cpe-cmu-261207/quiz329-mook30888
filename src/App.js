@@ -1,14 +1,23 @@
 import ItemTable from "./ItemTable";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useReducer } from "react";
 
 function App() {
   //add useState for all state variables
+  const [foo, setNames] = useState({});
 
+  let myName = " ";
+
+  function setName() {
+    myName.setName = "name";
+  }
   //load locationStorage
+
   useEffect(() => {
-    const items = localStorage.getItem("items");
+    const items = localStorage.getItem("items", JSON.stringify({ myName }));
+
     // ...
-  }, []);
+    setName();
+  }, [myName]);
 
   return (
     <div className="card" style={{ width: 400 }}>
@@ -48,7 +57,7 @@ function App() {
         <p className="is-4 title has-text-centered">Person List</p>
         {/* sample table */}
         <ItemTable name={"Bob"} gender={"Male"} age={"50"} />
-        <p>Your name and code here</p>
+        <p>{myName}</p>
       </div>
     </div>
   );
